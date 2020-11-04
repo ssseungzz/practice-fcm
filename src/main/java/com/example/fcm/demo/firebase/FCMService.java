@@ -29,6 +29,12 @@ public class FCMService {
         logger.info("Sent message with data. Topic: " + request.getTopic() + ", " + response);
     }
 
+    public void sendMessageToToken(PushNotificationRequest request)
+        throws InterruptedException, ExecutionException {
+        Message message = getPreconfiguredMessageToToken(request);
+        String response = sendAndGetResponse(message);
+        logger.info("Sent message to token. Device token: " + request.getToken() + ", " + response);
+    }
 
     private String sendAndGetResponse(Message message) throws InterruptedException, ExecutionException {
         return FirebaseMessaging.getInstance().sendAsync(message).get();
@@ -46,6 +52,10 @@ public class FCMService {
     private ApnsConfig getApnsConfig(String topic) {
         return ApnsConfig.builder()
                 .setAps(Aps.builder().setCategory(topic).setThreadId(topic).build()).build();
+    }
+
+    private Message getPreconfiguredMessageToToken(PushNotificationRequest request) {
+        return getPreconfiguredMessageBuilder(request).setToken(request.getToken()).build();
     }
 
     private Message getPreconfiguredMessageWithoutData(PushNotificationRequest request) {

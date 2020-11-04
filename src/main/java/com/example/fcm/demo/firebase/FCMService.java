@@ -15,6 +15,13 @@ public class FCMService {
 
     private Logger logger = LoggerFactory.getLogger(FCMService.class);
 
+    public void sendMessage(Map<String, String> data, PushNotificationRequest request)
+            throws InterruptedException, ExecutionException {
+        Message message = getPreconfigureMessageWithData(data, request);
+        String response = sendAndGetResponse(message);
+        logger.info("Sent message with data. Topic: " + request.getTopic() + ", " + response);
+    }
+
     public void sendMessageWithoutData(PushNotificationRequest request)
             throws InterruptedException, ExecutionException {
         Message message = getPreconfiguredMessageWithoutData(request);

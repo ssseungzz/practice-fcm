@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.Duration;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 @Service
@@ -51,6 +52,10 @@ public class FCMService {
         return Message.builder()
                 .setApnsConfig(apnsConfig).setAndroidConfig(androidConfig).setNotification(
                         new Notification(request.getTitle(), request.getMessage()));
+    }
+
+    private Message getPreconfigureMessageWithData(Map<String, String> data, PushNotificationRequest request) {
+        return getPreconfiguredMessageBuilder(request).putAllData(data).setTopic(request.getTopic()).build();
     }
 
 }

@@ -37,7 +37,7 @@ public class PushNotificationService {
         }
     }
 
-    /*
+
     public void sendPushNotification(PushNotificationRequest request) {
         try {
             fcmService.sendMessage(getSamplePayloadData(), request);
@@ -45,7 +45,7 @@ public class PushNotificationService {
             logger.error(e.getMessage());
         }
     }
-     */
+
 
     public void sendPushNotificationWithoutData(PushNotificationRequest request) {
         try {
@@ -55,7 +55,7 @@ public class PushNotificationService {
         }
     }
 
-    /*
+
     public void sendPushNotificationToToken(PushNotificationRequest request) {
         try {
             fcmService.sendMessageToToken(request);
@@ -64,16 +64,12 @@ public class PushNotificationService {
         }
     }
 
-     */
-
-
     private Map<String, String> getSamplePayloadData() {
         Map<String, String> pushData = new HashMap<>();
         pushData.put("messageId", defaults.get("payloadMessageId"));
         pushData.put("text", defaults.get("payloadData") + " " + LocalDateTime.now());
         return pushData;
     }
-
 
     private PushNotificationRequest getSamplePushNotificationRequest() {
         PushNotificationRequest request = new PushNotificationRequest(defaults.get("title"),

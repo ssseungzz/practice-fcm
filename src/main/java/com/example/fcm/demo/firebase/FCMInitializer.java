@@ -14,7 +14,7 @@ import java.io.IOException;
 @Service
 public class FCMInitializer {
 
-    private static final String FIREBASE_CONFIG_PATH = "example-fcm-2bfdd-firebase-adminsdk-736on-654e307690";
+    private static final String FIREBASE_CONFIG_PATH = "example-fcm-2bfdd-firebase-adminsdk-736on-654e307690.json";
     Logger logger = (Logger) LoggerFactory.getLogger(FCMInitializer.class);
 
     @PostConstruct
